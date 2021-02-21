@@ -1,70 +1,15 @@
-# Getting Started with Create React App
+# React grid system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application generates UI grid based on content data of given structure. It checks if the content is valid based on the Grid size and Columns' widths, and is able to dynamically alocate available grid space to columns.
 
-## Available Scripts
+To display the content the system uses a simple solution based on `CSS Grid Layout` and `CSS Custom Properties`. It uses given or evaluated column width to place it on the DOM.
 
-In the project directory, you can run:
+The evaluation of column width is the most complex part. First we need to find which columns are flexible (don't have a width assigned) and how much space is left for them. Then we distribute the available space as evelny as possible with more emphasis on first colums ( width can be only described in discrete numbers which corespond to the Grid columns).
 
-### `npm start`
+Exporting to HTML uses React inbuilt mechanism and it generates the output the same way as it does to update the DOM.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Exporting to JSON is even simpler, as it just uses the `content` data based on which the grid is generated. Every change that the user wants to make to the grid needs to be made on the `content` first, and then it is propagated to the components. If the content management is too complicated using react application state, a library for state management like `redux` is recommended.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+For now the content supports only `text` elements, but it can be easly exteded to display `img`, or `video` elements if the source is provided.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Grid column number is customizable and it doesn't impact the functionality. Validation and column width evaluation doesn't make assumbtions about the grid size. 
